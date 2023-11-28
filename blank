@@ -1,1 +1,66 @@
-print("add")
+A) # # Using POST method
+# # Redirect.py
+from flask import Flask,redirect,url_for,request,render_template
+
+app=Flask(__name__)
+
+@app.route('/hi')
+def func1():
+    return render_template('redirecth.html')
+
+
+@app.route('/redirect_check', methods = ["POST"] )  
+def validate():  
+    if request.method == 'POST' and request.form['fname'] == 'ak': 
+
+        return redirect(url_for("success"))  
+   
+
+@app.route('/success')
+def success():
+     return "Success!"
+
+if __name__=='__main__':
+     app.run(debug=True)
+
+
+
+B) #Using GET method
+
+# from flask import Flask,redirect,url_for,request,render_template
+
+# app=Flask(__name__)
+
+# @app.route('/hi')
+# def func1():
+#     return render_template('redirecth.html')
+
+# @app.route('/redirect_check', methods = ["GET"] )  
+# def validate():  
+#     if request.method == 'GET':
+#             if(request.args.get('fname') == 'ak'):
+#                  return redirect(url_for("success"))
+
+# @app.route('/success')
+# def success():
+#      return "Success!"
+
+# if __name__=='__main__':
+#      app.run(debug=True)
+
+
+html code:
+<html>
+<body>
+
+<h1>Enter Name </h1>
+
+<form method = "post" action = "redirect_check"> 
+
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
